@@ -11,7 +11,7 @@ import {
 import FormInput from '../form-input/form-input.component';
 import Button from '../button/button.component';
 
-import '../sign-up-form/sign-up-form.styles.scss';
+import './sign-in-form.styles.scss';
 
 const defaultSignInFormFields = {
     email: '',
@@ -19,6 +19,10 @@ const defaultSignInFormFields = {
 }
 
 const SignInForm = () => {
+    const [formFields, setFormFields] = useState(defaultSignInFormFields);
+    const { email, password } = formFields;
+
+    /*
     useEffect(() => {
         async function fetchData() {
             // You can await here
@@ -29,19 +33,17 @@ const SignInForm = () => {
         }
         fetchData();
     }, []); // Or [] if effect doesn't need props or state
+    */
 
 
-    const logGoogleUser = async () => {
+    const signInWithGoogle = async () => {
         try {
             const { user } = await signInWithGooglePopup();
-            const userDocRef = await createUserDocumentFromAuth(user);
+            await createUserDocumentFromAuth(user);
         } catch (error) {
             console.log(error);
         }
     }
-
-    const [formFields, setFormFields] = useState(defaultSignInFormFields);
-    const { email, password } = formFields;
 
     const resetFormFields = () => {
         setFormFields(defaultSignInFormFields);
@@ -51,9 +53,9 @@ const SignInForm = () => {
         event.preventDefault();
 
         try {
-            const { user } = await signInAuthUserWithEmailAndPassword(email, password);
+            const response = await signInAuthUserWithEmailAndPassword(email, password);
 
-            await console.log(user);
+            await console.log(response);
             resetFormFields();
 
         } catch (error) {
@@ -67,7 +69,7 @@ const SignInForm = () => {
     }
 
     return(
-        <div className='sign-in-container'>
+        <div className='sign-in-form-container'>
             <h2>I already Have an Account</h2>
             <span>Sign in with your email and password</span>
             <form onSubmit={handleSubmit}>
@@ -87,8 +89,10 @@ const SignInForm = () => {
                     name='password'
                     value={password}
                 />
-                <Button type='submit'>Sign In</Button>
-                <Button buttonType='google' onClick={logGoogleUser}>Sign In with Google</Button>
+                <div className='buttons-container'>
+                    <Button type='submit'>Sign In</Button>
+                    <Button buttonType='google' onClick={signInWithGoogle}>Google Sign In</Button>
+                </div>
             </form>
         </div>
     );
