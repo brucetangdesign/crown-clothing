@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getRedirectResult } from 'firebase/auth';
 
 import {
@@ -11,6 +11,8 @@ import {
 import FormInput from '../form-input/form-input.component';
 import Button from '../button/button.component';
 
+import { UserContext } from '../../contexts/user.context';
+
 import './sign-in-form.styles.scss';
 
 const defaultSignInFormFields = {
@@ -21,20 +23,7 @@ const defaultSignInFormFields = {
 const SignInForm = () => {
     const [formFields, setFormFields] = useState(defaultSignInFormFields);
     const { email, password } = formFields;
-
-    /*
-    useEffect(() => {
-        async function fetchData() {
-            // You can await here
-            const response = await getRedirectResult(auth);
-            if (response) {
-                const userDocRef = await createUserDocumentFromAuth(response.user);
-            }
-        }
-        fetchData();
-    }, []); // Or [] if effect doesn't need props or state
-    */
-
+    const { setCurrentUser } = useContext(UserContext);
 
     const signInWithGoogle = async () => {
         try {
@@ -53,9 +42,8 @@ const SignInForm = () => {
         event.preventDefault();
 
         try {
-            const response = await signInAuthUserWithEmailAndPassword(email, password);
-
-            await console.log(response);
+            const { user } = await signInAuthUserWithEmailAndPassword(email, password);
+            setCurrentUser(user);
             resetFormFields();
 
         } catch (error) {
