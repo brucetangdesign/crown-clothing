@@ -11,14 +11,23 @@ const Category = () => {
 
   useEffect(() => {
     setProducts(categoriesMap[category]);
-  },[category, categoriesMap])
+  },[category, categoriesMap]);
 
-  console.log(category);
+  useEffect(() => {
+    //console.log(categoriesMap);
+  }, [products]);
+
+  const isEmpty = (obj) => {
+    return Object.keys(obj).length === 0;
+  }
 
   return(
     <div className="category-container">
-      {products &&
-        products.map((product) => <ProductCard key={product.id} product={product}/>)
+      {!isEmpty(categoriesMap) ?
+      (products && 
+          products.map((product) => <ProductCard key={product.id} product={product} />)
+      )
+      : null
       }
     </div>
   )
