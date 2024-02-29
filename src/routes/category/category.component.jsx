@@ -22,7 +22,7 @@ const Category = () => {
   }
 
   return(
-    <Fragment>
+    <Fragment key={category}>
       <h1 className="category-title">{category.toUpperCase()}</h1>
       <div className="category-container">
         {!isEmpty(categoriesMap) ?
