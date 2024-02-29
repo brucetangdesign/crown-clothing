@@ -8,7 +8,7 @@ import {
 import FormInput from '../form-input/form-input.component';
 import Button from '../button/button.component';
 
-import './sign-in-form.styles.scss';
+import { SignInFormContainer } from './sign-in-form.styles';
 
 const defaultSignInFormFields = {
     email: '',
@@ -52,7 +52,7 @@ const SignInForm = () => {
     }
 
     return(
-        <div className='sign-in-form-container'>
+        <SignInFormContainer>
             <h2>I already Have an Account</h2>
             <span>Sign in with your email and password</span>
             <form onSubmit={handleSubmit}>
@@ -77,7 +77,7 @@ const SignInForm = () => {
                     <Button type='button' buttonType='google' onClick={signInWithGoogle}>Google Sign In</Button>
                 </div>
             </form>
-        </div>
+        </SignInFormContainer>
     );
 }
 

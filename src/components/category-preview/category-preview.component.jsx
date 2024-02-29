@@ -1,15 +1,11 @@
-import { useContext, Fragment } from "react";
 import { Link } from 'react-router-dom';
-import { CategoriesContext } from "../../contexts/categories.context";
 import ProductCard from "../product-card/product-card.component";
 
 import './category-preview.styles.scss';
 
 const CategoryPreview = ({title, products}) => {
-  const { categoriesMap } = useContext(CategoriesContext);
-
   return (
-    <div className="category-preview-container">
+    <div key={title} className="category-preview-container">
       <h2>{<Link className="title"  to={title}>{title.toUpperCase()}</Link>}</h2>
       <div className="preview">
       {
