@@ -1,4 +1,6 @@
-.button-container {
+import { styled } from 'styled-components';
+
+export const ButtonContainer = styled.button`
     min-width: 165px;
     width: auto;
     height: 50px;
@@ -43,4 +45,4 @@
             border: none;
         }
     }
-}
+`;
