@@ -1,5 +1,3 @@
-import './button.styles.scss';
-
 import { ButtonContainer } from './button.styles';
 
 const BUTTON_TYPE_CLASSES = {
