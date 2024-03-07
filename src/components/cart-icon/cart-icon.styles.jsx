@@ -21,4 +21,5 @@ export const ItemCount = styled.span`
 export const ShoppingIcon = styled(ShoppingBag)`
   width: 24px;
   height: 24px;
+  z-index: 1000;
 `;
