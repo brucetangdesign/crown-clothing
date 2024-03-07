@@ -5,9 +5,9 @@ import { CategoryPreviewContainer, Title, Preview } from './category-preview.sty
 
 const CategoryPreview = ({title, products}) => {
   return (
-    <CategoryPreviewContainer key={title} className="category-preview-container">
+    <CategoryPreviewContainer key={title}>
       <Title>{<Link className="title" to={title}>{title.toUpperCase()}</Link>}</Title>
-      <Preview className="preview">
+      <Preview>
       {
         products
         .filter((_, index) => index < 4)

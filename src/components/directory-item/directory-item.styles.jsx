@@ -5,6 +5,7 @@ export const BackgroundImage = styled.div`
   height: 100%;
   background-size: cover;
   background-position: center;
+  background-image: ${({ imageUrl }) => `url(${imageUrl})`};
 `;
 
 export const Body = styled.div`
@@ -54,10 +55,6 @@ export const DirectoryItemContainer = styled.div`
     ${Body} {
       opacity: 0.9;
     }
-  }
-
-  &.large {
-    height: 380px;
   }
 
   &:first-child {
