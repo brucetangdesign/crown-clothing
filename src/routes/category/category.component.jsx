@@ -18,8 +18,8 @@ const Category = () => {
   }
 
   return(
-    <Fragment>
-      <CategoryTitle>{category.toUpperCase()}</CategoryTitle>
+    <Fragment key={category}>
+      <CategoryTitle key={category.toUpperCase()} >{category.toUpperCase()}</CategoryTitle>
       <CategoryContainer>
         {!isEmpty(categoriesMap) ?
         (products && 
